@@ -1,11 +1,15 @@
 import "../styles/App.css";
 import Layout from "./Layout";
-import Signup from "./Signup";
+import Login from "./pages/Login";
+import Quiz from "./pages/Quiz";
+import Signup from "./pages/Signup";
 
 function App() {
   return (
     <Layout>
       <Signup />
+      <Login />
+      <Quiz />
     </Layout>
   );
 }
