@@ -44,7 +44,7 @@ export default function Answers() {
         text="A New Hope 6"
         for="option6"
         id="option6"
-        labelClassName={classes.answer}
+        labelClassName={`${classes.answer} ${classes.wrong}`}
       />
       <Checkbox
         type="checkbox"
