@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext";
 import classes from "../styles/Account.module.css";
 
 export default function Account() {
-  const { currentUser, login } = useAuth();
+  const { currentUser, login, signout } = useAuth();
 
   return (
     <div className={classes.account}>
@@ -16,7 +16,7 @@ export default function Account() {
           <span
             className="material-icons-outlined"
             title="Logout"
-            onClick={login}>
+            onClick={signout}>
             logout
           </span>
         </>
