@@ -2,25 +2,24 @@ import { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Link } from "react-router-dom";
 import useVideoList from "../hooks/useVideoList";
-// import classes from "../styles/Videos.module.css";
 import Video from "./Video";
 
 export default function Videos() {
   const [page, setPage] = useState(1);
   const { loading, error, videos, hasMore } = useVideoList(page);
-  // console.log("videos mounted", videos);
+  // console.log("page number", page, hasMore);
 
   return (
     <div>
-      {videos.length && (
+      {videos.length > 0 && (
         <InfiniteScroll
           dataLength={videos.length}
+          next={() => setPage(page + 8)}
           hasMore={hasMore}
-          loader="Loading...."
-          next={() => setPage(page + 10)}>
+          loader={<h4>Fetching data...</h4>}>
           {videos.map((video) =>
             video.noq > 0 ? (
-              <Link to="/quiz" key={video.youtubeID}>
+              <Link to={`quiz/${video.youtubeID}`} key={video.youtubeID}>
                 <Video
                   title={video.title}
                   id={video.youtubeID}
@@ -28,7 +27,12 @@ export default function Videos() {
                 />
               </Link>
             ) : (
-              <Video title={video.title} id={video.youtubeID} noq={video.noq} />
+              <Video
+                key={video.youtubeID}
+                title={video.title}
+                id={video.youtubeID}
+                noq={video.noq}
+              />
             )
           )}
         </InfiniteScroll>

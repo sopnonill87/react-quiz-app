@@ -19,22 +19,22 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route
               exact
-              path="/signup"
+              path="signup"
               element={<PublicRoute component={Signup} />}
             />
             <Route
               exact
-              path="/login"
+              path="login"
               element={<PublicRoute component={Login} />}
             />
             <Route
               exact
-              path="/quiz"
+              path="quiz/:id"
               element={<PrivateRoute component={Quiz} />}
             />
             <Route
               exact
-              path="/result"
+              path="result"
               element={<PrivateRoute component={Result} />}
             />
           </Routes>
