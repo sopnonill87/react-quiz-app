@@ -15,6 +15,8 @@ export default function useVideoList(page) {
   const [videos, setVideos] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
+  // console.log("page", page);
+
   useEffect(() => {
     async function fetchVideos() {
       const db = getDatabase();
@@ -23,7 +25,7 @@ export default function useVideoList(page) {
         videosRef,
         orderByKey(),
         startAt("" + page),
-        limitToFirst(10)
+        limitToFirst(16)
       );
 
       try {
@@ -34,7 +36,7 @@ export default function useVideoList(page) {
 
         if (snapshot.exists()) {
           setVideos((prevVideos) => {
-            // before [...prevVideos, ...Object.values(snapshot.val())];
+            // return [...prevVideos, ...Object.values(snapshot.val())];
             return [...Object.values(snapshot.val())];
           });
         } else {
@@ -46,6 +48,7 @@ export default function useVideoList(page) {
       }
     }
 
+    // setTimeout(() => fetchVideos(), 2000);
     fetchVideos();
   }, [page]);
 
